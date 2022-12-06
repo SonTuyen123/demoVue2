@@ -123,9 +123,26 @@
   </div>
 </template>
 <script>
+import addUser from "./components/Add.vue";
 import { mapMutations, mapActions, mapGetters } from "vuex";
 
 export default {
+  name: "App",
+  data() {
+    return {
+      dataEditUser: {
+        id: "",
+        name: "",
+        email: "",
+      },
+      flag: "",
+      dataSearch: "",
+      valueDataSearch: [],
+    };
+  },
+  components: {
+    addUser,
+  },
   methods: {
     editUser(id) {
       for (let index = 0; index < this.list.length; index++) {
@@ -139,8 +156,8 @@ export default {
     },
 
     dataEditNewUser() {
-      this.$emit("save", this.dataEditUser);
-      console.log(this.dataEditUser);
+      // this.$emit("save", this.dataEditUser);
+      // console.log(this.dataEditUser);
       for (let index = 0; index < this.list.length; index++) {
         if (this.list[index].id === this.dataEditUser.id) {
           console.log(this.list[index].id);
@@ -169,19 +186,7 @@ export default {
     },
     ...mapActions(["getList", "deleteUser"]),
   },
-  name: "App",
-  data() {
-    return {
-      dataEditUser: {
-        id: "",
-        name: "",
-        email: "",
-      },
-      flag: "",
-      dataSearch: "",
-      valueDataSearch: [],
-    };
-  },
+
   computed: {
     ...mapGetters(["list"]),
   },
