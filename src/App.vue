@@ -123,7 +123,7 @@
   </div>
 </template>
 <script>
-import addUser from "./components/Add.vue";
+import addUser from "./components/AddUser.vue";
 import { mapMutations, mapActions, mapGetters } from "vuex";
 
 export default {
@@ -167,7 +167,6 @@ export default {
     },
     Search() {
       this.valueDataSearch = [];
-      this.$emit("save", this.dataSearch);
       if (this.dataSearch === undefined) {
         this.valueDataSearch = this.list;
       }
