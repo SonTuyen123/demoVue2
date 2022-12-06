@@ -156,8 +156,6 @@ export default {
     },
 
     dataEditNewUser() {
-      // this.$emit("save", this.dataEditUser);
-      // console.log(this.dataEditUser);
       for (let index = 0; index < this.list.length; index++) {
         if (this.list[index].id === this.dataEditUser.id) {
           console.log(this.list[index].id);
