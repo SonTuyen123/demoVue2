@@ -2,15 +2,7 @@
   <div id="app">
     <br />
     <addUser />
-    <div id="search">
-      <input
-        type="text"
-        v-model="dataSearch"
-        @keypress="Search"
-        placeholder="Search"
-      />
-      &nbsp;
-    </div>
+    <SearchUser />
     <table class="table">
       <thead>
         <tr>
@@ -124,7 +116,8 @@
 </template>
 <script>
 import addUser from "./components/AddUser.vue";
-import { mapMutations, mapActions, mapGetters } from "vuex";
+import SearchUser from "./components/SearchUser.vue";
+import { mapMutations, mapActions, mapGetters, mapState } from "vuex";
 
 export default {
   name: "App",
@@ -137,11 +130,11 @@ export default {
       },
       flag: "",
       dataSearch: "",
-      valueDataSearch: [],
     };
   },
   components: {
     addUser,
+    SearchUser,
   },
   methods: {
     editUser(id) {
@@ -165,27 +158,12 @@ export default {
         }
       }
     },
-    Search() {
-      this.valueDataSearch = [];
-      if (this.dataSearch === undefined) {
-        this.valueDataSearch = this.list;
-      }
-      for (let index = 0; index < this.list.length; index++) {
-        if (
-          this.list[index].name
-            .toLowerCase()
-            .includes(this.dataSearch.toLowerCase())
-        ) {
-          console.log(this.list[index]);
-          this.valueDataSearch.push(this.list[index]);
-        }
-      }
-    },
+
     ...mapActions(["getList", "deleteUser"]),
   },
 
   computed: {
-    ...mapGetters(["list"]),
+    ...mapGetters(["list", "valueDataSearch"]),
   },
   watch: {
     list: {
@@ -206,8 +184,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-#search {
-  padding: 24px;
 }
 </style>

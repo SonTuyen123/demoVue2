@@ -1,9 +1,11 @@
 const state = {
   list: [],
+  valueDataSearch: [],
 };
 
 const getters = {
   list: (state) => state.list,
+  valueDataSearch: (state) => state.valueDataSearch,
 };
 
 const actions = {
