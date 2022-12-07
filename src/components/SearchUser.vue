@@ -1,17 +1,13 @@
 <template>
   <div id="search">
-    <input
-      type="text"
-      v-model="dataSearch"
-      @keydown="Search"
-      placeholder="Search"
-    />
+    <input type="text" v-model="dataSearch" placeholder="Search" />
+    <button @click="Search()">Search</button>
     &nbsp;
   </div>
 </template>
 
 <script>
-import { mapMutations, mapActions, mapGetters } from "vuex";
+import { mapMutations, mapActions, mapGetters, mapState } from "vuex";
 
 export default {
   data() {
@@ -21,7 +17,7 @@ export default {
   },
   methods: {
     Search() {
-      this.valueDataSearch = [];
+      this.setDataSearch();
       if (this.dataSearch === undefined) {
         this.valueDataSearch = this.list;
       }
@@ -31,18 +27,16 @@ export default {
             .toLowerCase()
             .includes(this.dataSearch.toLowerCase())
         ) {
-          console.log(
-            "🚀 ~ file: SearchUser.vue:33 ~ Search ~ dataSearch",
-            this.dataSearch
-          );
           console.log(this.list[index]);
+
           this.valueDataSearch.push(this.list[index]);
         }
       }
     },
+    ...mapActions(["setDataSearch"]),
   },
   computed: {
-    ...mapGetters(["valueDataSearch", "list"]),
+    ...mapGetters(["list", "valueDataSearch"]),
   },
 };
 </script>

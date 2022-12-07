@@ -31,9 +31,19 @@ const actions = {
       console.log(error);
     }
   },
+  setDataSearch({ commit }) {
+    try {
+      commit("SET_VALUE_SEARCH");
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 const mutations = {
+  SET_VALUE_SEARCH(state) {
+    state.valueDataSearch = [];
+  },
   SET_LIST(state, list) {
     state.list = list;
   },
